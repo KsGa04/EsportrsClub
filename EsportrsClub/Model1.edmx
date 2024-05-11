@@ -1,0 +1,427 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище EsportsClubModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Book">
+          <Key>
+            <PropertyRef Name="id_book" />
+          </Key>
+          <Property Name="id_book" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_computer" Type="int" />
+          <Property Name="id_user" Type="int" />
+          <Property Name="date_book" Type="date" Nullable="false" />
+          <Property Name="time_book" Type="time" Precision="7" Nullable="false" />
+          <Property Name="duration" Type="int" Nullable="false" />
+          <Property Name="service_food" Type="bit" />
+          <Property Name="service_drink" Type="bit" />
+          <Property Name="total_price" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="id_tournament" Type="int" />
+        </EntityType>
+        <EntityType Name="Computer">
+          <Key>
+            <PropertyRef Name="id_computer" />
+          </Key>
+          <Property Name="id_computer" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name_computer" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="id_status" Type="int" />
+          <Property Name="price" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name_role" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="id_status" />
+          </Key>
+          <Property Name="id_status" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name_status" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tournament">
+          <Key>
+            <PropertyRef Name="id_tournament" />
+          </Key>
+          <Property Name="id_tournament" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name_tournament" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="date_tournament" Type="date" Nullable="false" />
+          <Property Name="game" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="id_user" />
+          </Key>
+          <Property Name="id_user" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name_user" Type="nvarchar" MaxLength="50" />
+          <Property Name="email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="login" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="id_role" Type="int" />
+        </EntityType>
+        <Association Name="FK__Book__id_compute__412EB0B6">
+          <End Role="Computer" Type="Self.Computer" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Book" Type="Self.Book" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Computer">
+              <PropertyRef Name="id_computer" />
+            </Principal>
+            <Dependent Role="Book">
+              <PropertyRef Name="id_computer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Book__id_tournam__4222D4EF">
+          <End Role="Tournament" Type="Self.Tournament" Multiplicity="0..1" />
+          <End Role="Book" Type="Self.Book" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tournament">
+              <PropertyRef Name="id_tournament" />
+            </Principal>
+            <Dependent Role="Book">
+              <PropertyRef Name="id_tournament" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Book__id_user__4316F928">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Book" Type="Self.Book" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="id_user" />
+            </Principal>
+            <Dependent Role="Book">
+              <PropertyRef Name="id_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Computer__id_sta__440B1D61">
+          <End Role="Status" Type="Self.Status" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Computer" Type="Self.Computer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="id_status" />
+            </Principal>
+            <Dependent Role="Computer">
+              <PropertyRef Name="id_status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Users__id_role__44FF419A">
+          <End Role="Role" Type="Self.Role" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="id_role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище EsportsClubModelContainer">
+          <EntitySet Name="Book" EntityType="Self.Book" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Computer" EntityType="Self.Computer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tournament" EntityType="Self.Tournament" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Book__id_compute__412EB0B6" Association="Self.FK__Book__id_compute__412EB0B6">
+            <End Role="Computer" EntitySet="Computer" />
+            <End Role="Book" EntitySet="Book" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Book__id_tournam__4222D4EF" Association="Self.FK__Book__id_tournam__4222D4EF">
+            <End Role="Tournament" EntitySet="Tournament" />
+            <End Role="Book" EntitySet="Book" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Book__id_user__4316F928" Association="Self.FK__Book__id_user__4316F928">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Book" EntitySet="Book" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Computer__id_sta__440B1D61" Association="Self.FK__Computer__id_sta__440B1D61">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Computer" EntitySet="Computer" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Users__id_role__44FF419A" Association="Self.FK__Users__id_role__44FF419A">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="EsportsClubModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Book">
+          <Key>
+            <PropertyRef Name="id_book" />
+          </Key>
+          <Property Name="id_book" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_computer" Type="Int32" />
+          <Property Name="id_user" Type="Int32" />
+          <Property Name="date_book" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="time_book" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="duration" Type="Int32" Nullable="false" />
+          <Property Name="service_food" Type="Boolean" />
+          <Property Name="service_drink" Type="Boolean" />
+          <Property Name="total_price" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="id_tournament" Type="Int32" />
+          <NavigationProperty Name="Computer" Relationship="Self.FK__Book__id_compute__412EB0B6" FromRole="Book" ToRole="Computer" />
+          <NavigationProperty Name="Tournament" Relationship="Self.FK__Book__id_tournam__4222D4EF" FromRole="Book" ToRole="Tournament" />
+          <NavigationProperty Name="Users" Relationship="Self.FK__Book__id_user__4316F928" FromRole="Book" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Computer">
+          <Key>
+            <PropertyRef Name="id_computer" />
+          </Key>
+          <Property Name="id_computer" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name_computer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="id_status" Type="Int32" />
+          <Property Name="price" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <NavigationProperty Name="Book" Relationship="Self.FK__Book__id_compute__412EB0B6" FromRole="Computer" ToRole="Book" />
+          <NavigationProperty Name="Status" Relationship="Self.FK__Computer__id_sta__440B1D61" FromRole="Computer" ToRole="Status" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name_role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Users" Relationship="Self.FK__Users__id_role__44FF419A" FromRole="Role" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="id_status" />
+          </Key>
+          <Property Name="id_status" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name_status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Computer" Relationship="Self.FK__Computer__id_sta__440B1D61" FromRole="Status" ToRole="Computer" />
+        </EntityType>
+        <EntityType Name="Tournament">
+          <Key>
+            <PropertyRef Name="id_tournament" />
+          </Key>
+          <Property Name="id_tournament" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name_tournament" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="date_tournament" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="game" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Book" Relationship="Self.FK__Book__id_tournam__4222D4EF" FromRole="Tournament" ToRole="Book" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="id_user" />
+          </Key>
+          <Property Name="id_user" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name_user" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="id_role" Type="Int32" />
+          <NavigationProperty Name="Book" Relationship="Self.FK__Book__id_user__4316F928" FromRole="Users" ToRole="Book" />
+          <NavigationProperty Name="Role" Relationship="Self.FK__Users__id_role__44FF419A" FromRole="Users" ToRole="Role" />
+        </EntityType>
+        <Association Name="FK__Book__id_compute__412EB0B6">
+          <End Role="Computer" Type="Self.Computer" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Book" Type="Self.Book" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Computer">
+              <PropertyRef Name="id_computer" />
+            </Principal>
+            <Dependent Role="Book">
+              <PropertyRef Name="id_computer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Book__id_tournam__4222D4EF">
+          <End Role="Tournament" Type="Self.Tournament" Multiplicity="0..1" />
+          <End Role="Book" Type="Self.Book" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tournament">
+              <PropertyRef Name="id_tournament" />
+            </Principal>
+            <Dependent Role="Book">
+              <PropertyRef Name="id_tournament" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Book__id_user__4316F928">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Book" Type="Self.Book" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="id_user" />
+            </Principal>
+            <Dependent Role="Book">
+              <PropertyRef Name="id_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Computer__id_sta__440B1D61">
+          <End Role="Status" Type="Self.Status" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Computer" Type="Self.Computer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="id_status" />
+            </Principal>
+            <Dependent Role="Computer">
+              <PropertyRef Name="id_status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Users__id_role__44FF419A">
+          <End Role="Role" Type="Self.Role" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="id_role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="EsportsClubEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Book" EntityType="Self.Book" />
+          <EntitySet Name="Computer" EntityType="Self.Computer" />
+          <EntitySet Name="Role" EntityType="Self.Role" />
+          <EntitySet Name="Status" EntityType="Self.Status" />
+          <EntitySet Name="Tournament" EntityType="Self.Tournament" />
+          <EntitySet Name="Users" EntityType="Self.Users" />
+          <AssociationSet Name="FK__Book__id_compute__412EB0B6" Association="Self.FK__Book__id_compute__412EB0B6">
+            <End Role="Computer" EntitySet="Computer" />
+            <End Role="Book" EntitySet="Book" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Book__id_tournam__4222D4EF" Association="Self.FK__Book__id_tournam__4222D4EF">
+            <End Role="Tournament" EntitySet="Tournament" />
+            <End Role="Book" EntitySet="Book" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Book__id_user__4316F928" Association="Self.FK__Book__id_user__4316F928">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Book" EntitySet="Book" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Computer__id_sta__440B1D61" Association="Self.FK__Computer__id_sta__440B1D61">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Computer" EntitySet="Computer" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Users__id_role__44FF419A" Association="Self.FK__Users__id_role__44FF419A">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище EsportsClubModelContainer" CdmEntityContainer="EsportsClubEntities">
+          <EntitySetMapping Name="Book">
+            <EntityTypeMapping TypeName="EsportsClubModel.Book">
+              <MappingFragment StoreEntitySet="Book">
+                <ScalarProperty Name="id_book" ColumnName="id_book" />
+                <ScalarProperty Name="id_computer" ColumnName="id_computer" />
+                <ScalarProperty Name="id_user" ColumnName="id_user" />
+                <ScalarProperty Name="date_book" ColumnName="date_book" />
+                <ScalarProperty Name="time_book" ColumnName="time_book" />
+                <ScalarProperty Name="duration" ColumnName="duration" />
+                <ScalarProperty Name="service_food" ColumnName="service_food" />
+                <ScalarProperty Name="service_drink" ColumnName="service_drink" />
+                <ScalarProperty Name="total_price" ColumnName="total_price" />
+                <ScalarProperty Name="id_tournament" ColumnName="id_tournament" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Computer">
+            <EntityTypeMapping TypeName="EsportsClubModel.Computer">
+              <MappingFragment StoreEntitySet="Computer">
+                <ScalarProperty Name="id_computer" ColumnName="id_computer" />
+                <ScalarProperty Name="name_computer" ColumnName="name_computer" />
+                <ScalarProperty Name="id_status" ColumnName="id_status" />
+                <ScalarProperty Name="price" ColumnName="price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Role">
+            <EntityTypeMapping TypeName="EsportsClubModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name_role" ColumnName="name_role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Status">
+            <EntityTypeMapping TypeName="EsportsClubModel.Status">
+              <MappingFragment StoreEntitySet="Status">
+                <ScalarProperty Name="id_status" ColumnName="id_status" />
+                <ScalarProperty Name="name_status" ColumnName="name_status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tournament">
+            <EntityTypeMapping TypeName="EsportsClubModel.Tournament">
+              <MappingFragment StoreEntitySet="Tournament">
+                <ScalarProperty Name="id_tournament" ColumnName="id_tournament" />
+                <ScalarProperty Name="name_tournament" ColumnName="name_tournament" />
+                <ScalarProperty Name="date_tournament" ColumnName="date_tournament" />
+                <ScalarProperty Name="game" ColumnName="game" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="EsportsClubModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="id_user" ColumnName="id_user" />
+                <ScalarProperty Name="name_user" ColumnName="name_user" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="login" ColumnName="login" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="id_role" ColumnName="id_role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
