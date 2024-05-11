@@ -10,7 +10,7 @@
 
     <Grid>
         <ScrollViewer>
-            <ItemsControl ItemsSource="{Binding ComputerItems}" d:ItemsSource="{d:SampleData ItemCount=10}">
+            <ItemsControl ItemsSource="{Binding Computer}" d:ItemsSource="{d:SampleData ItemCount=10}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel/>
@@ -26,9 +26,9 @@
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="Auto"/>
                                 </Grid.RowDefinitions>
-                                <TextBlock Grid.Row="0" Text="{Binding Name}" FontSize="20" FontWeight="Bold"/>
-                                <TextBlock Grid.Row="1" Text="{Binding Status}" Foreground="{Binding StatusColor}" Margin="0,10,0,0"/>
-                                <TextBlock Grid.Row="2" Text="{Binding Price, StringFormat='{}{0:C2}'}" Margin="0,10,0,0"/>
+                                <TextBlock Grid.Row="0" Text="{Binding name_computer}" FontSize="20" FontWeight="Bold"/>
+                                <TextBlock Grid.Row="1" Text="{Binding Status.name_status}" Foreground="{Binding StatusColor}" Margin="0,10,0,0"/>
+                                <TextBlock Grid.Row="2" Text="{Binding price, StringFormat='{}{0:C2}'}" Margin="0,10,0,0"/>
                                 <Button Grid.Row="3" Content="Забронировать" HorizontalAlignment="Center" Margin="10" Style="{StaticResource BookNowButton}" Command="{Binding BookCommand}"/>
                             </Grid>
                         </Border>

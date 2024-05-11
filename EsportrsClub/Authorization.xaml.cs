@@ -11,7 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
+using EsportrsClub.Class;
 namespace EsportrsClub
 {
     /// <summary>
@@ -19,19 +19,37 @@ namespace EsportrsClub
     /// </summary>
     public partial class Authorization : Window
     {
+        EsportsClubEntities db = new EsportsClubEntities();
         public Authorization()
         {
             InitializeComponent();
+            Auth.IsAuth = false;
         }
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
-
+            if (db.Users.Where(x => x.login == UsernameTextBox.Text || x.password ==PasswordTextBox.Password).Any())
+            {
+                Users users = db.Users.Where(x => x.login == UsernameTextBox.Text || x.password == PasswordTextBox.Password).FirstOrDefault();
+                Auth.UserID = users.id_user;
+                Auth.Role = users.Role.name_role;
+                Auth.IsAuth = true;
+                MainWindow mainWindow = new MainWindow();
+                mainWindow.Show();
+                this.Hide();
+            }
+            else
+            {
+                MessageBox.Show("Данный пользователь отсутсвует");
+                Auth.IsAuth = false;
+            }
         }
 
         private void RegisterButton_Click(object sender, RoutedEventArgs e)
         {
-
+            Registration registration = new Registration();
+            registration.Show();
+            this.Hide();
         }
     }
 }

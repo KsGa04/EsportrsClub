@@ -24,5 +24,15 @@ namespace EsportrsClub.Pages
         {
             InitializeComponent();
         }
+
+        private void tounament_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Tournament());
+        }
+
+        private void computers_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Computers());
+        }
     }
 }

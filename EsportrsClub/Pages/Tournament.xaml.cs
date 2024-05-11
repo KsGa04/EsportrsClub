@@ -20,9 +20,11 @@ namespace EsportrsClub.Pages
     /// </summary>
     public partial class Tournament : Page
     {
+        EsportsClubEntities db = new EsportsClubEntities();
         public Tournament()
         {
             InitializeComponent();
+            DataContext = db.Tournament.ToList();
         }
     }
 }

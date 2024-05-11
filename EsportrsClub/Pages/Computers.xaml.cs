@@ -20,9 +20,11 @@ namespace EsportrsClub.Pages
     /// </summary>
     public partial class Computers : Page
     {
+        EsportsClubEntities db = new EsportsClubEntities();
         public Computers()
         {
             InitializeComponent();
+            DataContext = db.Computer.ToList();
         }
     }
 }
