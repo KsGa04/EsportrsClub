@@ -26,5 +26,10 @@ namespace EsportrsClub.Pages
             InitializeComponent();
             DataContext = db.Computer.ToList();
         }
+
+        private void book_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

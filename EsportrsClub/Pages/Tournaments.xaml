@@ -33,7 +33,7 @@
                             <TextBlock Style="{StaticResource TournamentDetailsTextBlockStyle}" Text="{Binding game}"/>
                         </StackPanel>
 
-                        <Button Grid.Column="1" Style="{StaticResource ButtonStyle}" Content="Зарегистрироваться" Margin="10"/>
+                        <Button Grid.Column="1" Style="{StaticResource ButtonStyle}" Content="Зарегистрироваться" Margin="10" x:Name="reg" Click="reg_Click"/>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>

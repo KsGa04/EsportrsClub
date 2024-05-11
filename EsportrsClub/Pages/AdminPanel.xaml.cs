@@ -167,8 +167,8 @@ namespace EsportrsClub.Pages
                 if (item is Tournament tournament)
                 {
                     return tournament.name_tournament.ToLower().Contains(searchText) ||
-                           tournament.d.ToLower().Contains(searchText) ||
-                           tournament.Game.ToLower().Contains(searchText);
+                           tournament.description.ToLower().Contains(searchText) ||
+                           tournament.game.ToLower().Contains(searchText);
                 }
                 return false;
             };
@@ -176,7 +176,20 @@ namespace EsportrsClub.Pages
 
         private void SearchUser_Click(object sender, RoutedEventArgs e)
         {
+            string searchText = SearchUserTextBox.Text.ToLower();
 
+            // Фильтруем данные в DataGrid
+            CollectionViewSource.GetDefaultView(UserDataGrid.ItemsSource).Filter = (item) =>
+            {
+                if (item is Users user)
+                {
+                    return user.name_user.ToLower().Contains(searchText) ||
+                           user.phone.ToLower().Contains(searchText) ||
+                           user.email.ToLower().Contains(searchText) ||
+                           user.Role.name_role.ToLower().Contains(searchText);
+                }
+                return false;
+            };
         }
     }
 }

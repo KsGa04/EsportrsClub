@@ -50,6 +50,9 @@
         <Label Grid.Row="4" Grid.Column="0" Content="Стоимость аренды:" Style="{StaticResource LabelStyle}"/>
         <TextBlock Grid.Row="4" Grid.Column="1" x:Name="RentalCost" Text="0 руб." Style="{StaticResource TextBlockStyle}"/>
 
+        <Label Grid.Row="5" Grid.Column="0" Content="Турнир:" Style="{StaticResource LabelStyle}" VerticalAlignment="Top"/>
+        <ComboBox Grid.Row="5" Grid.Column="1" x:Name="tournament" Style="{StaticResource ComboBoxStyle}" Height="30" VerticalAlignment="Top"/>
+
         <Button Grid.Row="5" Grid.ColumnSpan="2" Content="Забронировать" Style="{StaticResource ButtonStyle}" x:Name="Book" Click="Book_Click"/>
     </Grid>
 </Page>

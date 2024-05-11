@@ -20,9 +20,14 @@ namespace EsportrsClub.Pages
     /// </summary>
     public partial class Booking : Page
     {
+        EsportsClubEntities db = new EsportsClubEntities();
         public Booking()
         {
             InitializeComponent();
+            foreach (var d in db.Tournament)
+            {
+                tournament.Items.Add(d.name_tournament);
+            }
         }
 
         private void Book_Click(object sender, RoutedEventArgs e)
