@@ -16,12 +16,12 @@ using System.Windows.Shapes;
 namespace EsportrsClub.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для Tournament.xaml
+    /// Логика взаимодействия для Tournaments.xaml
     /// </summary>
-    public partial class Tournament : Page
+    public partial class Tournaments : Page
     {
         EsportsClubEntities db = new EsportsClubEntities();
-        public Tournament()
+        public Tournaments()
         {
             InitializeComponent();
             DataContext = db.Tournament.ToList();

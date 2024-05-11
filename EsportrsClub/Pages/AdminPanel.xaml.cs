@@ -20,6 +20,7 @@ namespace EsportrsClub.Pages
     /// </summary>
     public partial class AdminPanel : Page
     {
+        EsportsClubEntities db = new EsportsClubEntities();
         public AdminPanel()
         {
             InitializeComponent();
@@ -27,17 +28,41 @@ namespace EsportrsClub.Pages
 
         private void AddComputer_Click(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.Navigate(new AddComputer(0));
         }
 
         private void EditComputer_Click(object sender, RoutedEventArgs e)
         {
-
+            if (ComputerDataGrid.SelectedIndex >= 0)
+            {
+                var item = ComputerDataGrid.SelectedItem as Computer;
+                int id = item.id_computer;
+                NavigationService.Navigate(new AddComputer(id));
+            }
+            else
+            {
+                MessageBox.Show("Вы не выбрали ни один элемент");
+            }
         }
 
         private void DeleteComputer_Click(object sender, RoutedEventArgs e)
         {
+            if (ComputerDataGrid.SelectedIndex >= 0)
+            {
+                var result = MessageBox.Show("Вы точно хотите удалить этот компьютер?", "Удалить", MessageBoxButton.YesNo);
 
+                if (result == MessageBoxResult.Yes)
+                {
+                    var item = ComputerDataGrid.SelectedItem as Computer;
+                    int id = item.id_computer;
+                    Computer computer = db.Computer.Where(x => x.id_computer == id).FirstOrDefault();
+                    db.Computer.Remove(computer);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Вы не выбрали ни один элемент");
+            }
         }
 
         private void AddTournament_Click(object sender, RoutedEventArgs e)
