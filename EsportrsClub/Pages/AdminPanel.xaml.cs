@@ -24,5 +24,65 @@ namespace EsportrsClub.Pages
         {
             InitializeComponent();
         }
+
+        private void AddComputer_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void EditComputer_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void DeleteComputer_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void AddTournament_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void EditTournament_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void DeleteTournament_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void AddUser_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void EditUser_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void DeleteUser_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void SearchComputer_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void SearchTournament_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void SearchUser_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

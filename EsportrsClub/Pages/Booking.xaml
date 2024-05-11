@@ -45,6 +45,6 @@
         <Label Grid.Row="4" Grid.Column="0" Content="Стоимость аренды:" Style="{StaticResource LabelStyle}"/>
         <TextBlock Grid.Row="4" Grid.Column="1" x:Name="RentalCost" Text="0 руб." Style="{StaticResource TextBlockStyle}"/>
 
-        <Button Grid.Row="5" Grid.ColumnSpan="2" Content="Забронировать" Style="{StaticResource ButtonStyle}" Click="BookButton_Click"/>
+        <Button Grid.Row="5" Grid.ColumnSpan="2" Content="Забронировать" Style="{StaticResource ButtonStyle}" x:Name="Book" Click="Book_Click"/>
     </Grid>
 </Page>
