@@ -34,7 +34,7 @@
 
         <!-- Дата турнира -->
         <TextBlock Text="Стоимость:" Style="{StaticResource LabelTextBlockStyle}" Grid.Row="5" />
-        <TextBox Text="{Binding date_tournament}" Style="{StaticResource TextBoxStyle}" Grid.Row="5" Margin="5,50" x:Name="date_tournament"/>
+        <TextBox Text="{Binding price}" Style="{StaticResource TextBoxStyle}" Grid.Row="5" Margin="5,50" x:Name="price"/>
 
         <!-- Кнопки -->
         <StackPanel Grid.Row="6" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">

@@ -16,18 +16,46 @@ using System.Windows.Shapes;
 namespace EsportrsClub.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для AddUser.xaml
+    /// Логика взаимодействия для AddUsers.xaml
     /// </summary>
     public partial class AddUser : Page
     {
-        public AddUser()
+        EsportsClubEntities db = new EsportsClubEntities();
+        Users Users = new Users();
+        int Id;
+        public AddUser(int id)
         {
             InitializeComponent();
+            if (id != 0)
+            {
+                Id = id;
+                Users = db.Users.Where(x => x.id_user == id).FirstOrDefault();
+                DataContext = Users;
+            }
         }
 
         private void Save_Click(object sender, RoutedEventArgs e)
         {
+            if (Id != 0)
+            {
+                Users.email = email.Text;
+                Users.login = login.Text;
+                Users.password = password.Text;
+            }
+            else
+            {
+                Users Users = new Users();
+                Users.email = email.Text;
+                Users.login = login.Text;
+                Users.password = password.Text;
+                db.Users.Add(Users);
+            }
+            db.SaveChanges();
+        }
 
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
         }
     }
 }

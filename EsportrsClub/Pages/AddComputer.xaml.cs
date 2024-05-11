@@ -21,7 +21,7 @@ namespace EsportrsClub.Pages
     public partial class AddComputer : Page
     {
         EsportsClubEntities db = new EsportsClubEntities();
-        Tournament tournament = new Tournament();
+        Computer Computer = new Computer();
         int Id;
         public AddComputer(int id)
         {
@@ -29,8 +29,8 @@ namespace EsportrsClub.Pages
             if (id != 0)
             {
                 Id = id;
-                tournament = db.Tournament.Where(x => x.id_tournament == id).FirstOrDefault();
-                DataContext = tournament;
+                Computer = db.Computer.Where(x => x.id_computer == id).FirstOrDefault();
+                DataContext = Computer;
             }
         }
 
@@ -38,17 +38,17 @@ namespace EsportrsClub.Pages
         {
             if (Id != 0)
             {
-                tournament.name_tournament = name_tournament.Text;
-                tournament.game = game.Text;
-                tournament.date_tournament = (DateTime)date_tournament.SelectedDate;
+                Computer.name_computer = name_tournament.Text;
+                Computer.id_status = game.SelectedIndex + 1;
+                Computer.price = Convert.ToDecimal( price.Text);
             }
             else
             {
-                Tournament tournament = new Tournament();
-                tournament.name_tournament = name_tournament.Text;
-                tournament.game = game.Text;
-                tournament.date_tournament = (DateTime)date_tournament.SelectedDate;
-                db.Tournament.Add(tournament);
+                Computer Computer = new Computer();
+                Computer.name_computer = name_tournament.Text;
+                Computer.id_status = game.SelectedIndex + 1;
+                Computer.price = Convert.ToDecimal(price.Text);
+                db.Computer.Add(Computer);
             }
             db.SaveChanges();
         }
