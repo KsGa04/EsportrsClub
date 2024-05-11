@@ -27,7 +27,7 @@ namespace EsportrsClub.Pages
             DataContext = db.Tournament.ToList();
         }
 
-        private void reg_Click()
+        private void reg_Click(object sender, RoutedEventArgs e)
         {
 
         }
