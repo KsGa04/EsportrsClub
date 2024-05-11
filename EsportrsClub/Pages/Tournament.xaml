@@ -1,0 +1,42 @@
+﻿<Page x:Class="EsportrsClub.Pages.Tournament"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:EsportrsClub.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Tournament">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Margin="20">
+            <TextBlock Style="{StaticResource TitleTextBlockStyle}">Предстоящие турниры</TextBlock>
+            <TextBlock Style="{StaticResource SubtitleTextBlockStyle}">Примите участие в наших захватывающих киберспортивных соревнованиях!</TextBlock>
+        </StackPanel>
+
+        <ListView Grid.Row="1" Margin="10" ItemsSource="{Binding Tournaments}" Style="{StaticResource TournamentsListViewStyle}" d:ItemsSource="{d:SampleData ItemCount=10}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0" Margin="10">
+                            <TextBlock Style="{StaticResource TournamentTitleTextBlockStyle}" Text="{Binding Name}"/>
+                            <TextBlock Style="{StaticResource TournamentDetailsTextBlockStyle}" Text="{Binding Date}"/>
+                            <TextBlock Style="{StaticResource TournamentDetailsTextBlockStyle}" Text="{Binding Game}"/>
+                        </StackPanel>
+
+                        <Button Grid.Column="1" Style="{StaticResource ButtonStyle}" Content="Зарегистрироваться" Margin="10"/>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</Page>

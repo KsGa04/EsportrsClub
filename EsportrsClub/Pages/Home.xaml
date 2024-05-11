@@ -1,0 +1,40 @@
+﻿<Page x:Class="EsportrsClub.Pages.Home"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:EsportrsClub.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Home">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Margin="5">
+            <TextBlock Style="{StaticResource TitleTextBlockStyle}">Добро пожаловать в наш киберспортивный клуб!</TextBlock>
+            <TextBlock Style="{StaticResource SubtitleTextBlockStyle}" TextWrapping="Wrap">Мы предлагаем высококачественные услуги для профессиональных геймеров и любителей.</TextBlock>
+        </StackPanel>
+
+        <Grid Grid.Row="1" Margin="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0" Margin="10">
+                <Image Source="/Resources/tournament.png" Height="200" Stretch="Uniform"/>
+                <TextBlock Style="{StaticResource BodyTextBlockStyle}" TextWrapping="Wrap" TextAlignment="Center">Регулярно организуем турниры по популярным киберспортивным дисциплинам.</TextBlock>
+                <Button Style="{StaticResource ButtonStyle}" Content="Посмотреть турниры" Margin="0,10,0,0"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="1" Margin="10">
+                <Image Source="/Resources/equipment.png" Height="200" Stretch="Uniform"/>
+                <TextBlock Style="{StaticResource BodyTextBlockStyle}" TextWrapping="Wrap" TextAlignment="Center">Предоставляем высококлассное игровое оборудование для комфортной игры.</TextBlock>
+                <Button Style="{StaticResource ButtonStyle}" Content="Забронировать оборудование" Margin="0,10,0,0"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Page>
