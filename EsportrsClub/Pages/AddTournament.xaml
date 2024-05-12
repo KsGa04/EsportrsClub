@@ -15,6 +15,11 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
@@ -30,13 +35,19 @@
         <TextBox Text="{Binding game}" Style="{StaticResource TextBoxStyle}" Grid.Row="4" x:Name="game"/>
 
         <!-- Дата турнира -->
-        <TextBlock Text="Дата турнира:" Style="{StaticResource LabelTextBlockStyle}" Grid.Row="5" />
-        <DatePicker SelectedDate="{Binding date_tournament}" Grid.Row="5" Margin="0,50" x:Name="date_tournament"/>
+        <TextBlock Text="Дата начала турнира:" Style="{StaticResource LabelTextBlockStyle}" Grid.Row="5" />
+        <DatePicker SelectedDate="{Binding date_start_tournament}" Grid.Row="6" x:Name="date_start_tournament"/>
+
+        <TextBlock Text="Дата окончания турнира:" Style="{StaticResource LabelTextBlockStyle}" Grid.Row="7" />
+        <DatePicker SelectedDate="{Binding date_end_tournament}" Grid.Row="8" x:Name="date_end_tournament"/>
+
+        <TextBlock Text="Описание:" Style="{StaticResource LabelTextBlockStyle}" Grid.Row="9" />
+        <TextBox Text="{Binding description}" Style="{StaticResource TextBoxStyle}" Grid.Row="10" x:Name="description"/>
 
         <!-- Кнопки -->
-        <StackPanel Grid.Row="6" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
+        <StackPanel Grid.Row="11" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
             <Button Content="Сохранить" Style="{StaticResource ButtonStyle}" Margin="0,0,10,0" x:Name="Save" Click="Save_Click" />
-            <Button Content="Закрыть" Style="{StaticResource ButtonStyle}" x:Name="Back" Click="Back_Click"/>
+            <Button Content="Закрыть" Style="{StaticResource ButtonStyle}" Margin="0,0,10,0" x:Name="Back" Click="Back_Click"/>
         </StackPanel>
     </Grid>
 </Page>

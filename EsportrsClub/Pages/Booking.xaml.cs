@@ -21,12 +21,24 @@ namespace EsportrsClub.Pages
     public partial class Booking : Page
     {
         EsportsClubEntities db = new EsportsClubEntities();
-        public Booking()
+        public Booking(Tournament tournaments = null, Computer computers = null)
         {
             InitializeComponent();
             foreach (var d in db.Tournament)
             {
                 tournament.Items.Add(d.name_tournament);
+            }
+            foreach (var d in db.Computer)
+            {
+                computer.Items.Add(d.name_computer);
+            }
+            if (tournaments != null)
+            {
+                tournament.SelectedIndex = tournaments.id_tournament - 1;
+            }
+            if (computers != null)
+            {
+                computer.SelectedIndex = computers.id_computer - 1;
             }
         }
 

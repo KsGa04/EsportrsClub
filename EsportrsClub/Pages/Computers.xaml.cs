@@ -21,15 +21,25 @@ namespace EsportrsClub.Pages
     public partial class Computers : Page
     {
         EsportsClubEntities db = new EsportsClubEntities();
+        List<Computer>  computers = new List<Computer>();
         public Computers()
         {
             InitializeComponent();
-            DataContext = db.Computer.ToList();
+            ListComputer.Items.Clear();
+            computers = db.Computer.ToList();
+            ListComputer.ItemsSource = computers;
         }
 
-        private void book_Click(object sender, RoutedEventArgs e)
+        private void ListViewItem_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
+            if (sender is ListViewItem item)
+            {
+                var product = item.Content as Computer;
+                int id = product.id_computer;
+                Computer computer = db.Computer.Where(x => x.id_computer == id).FirstOrDefault();
+                NavigationService.Navigate(new Booking(null, (sender as ListViewItem).DataContext as Computer));
 
+            }
         }
     }
 }

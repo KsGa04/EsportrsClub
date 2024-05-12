@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:EsportrsClub.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="450" d:DesignWidth="760"
       Title="About">
     <Grid>
         <Grid.RowDefinitions>
@@ -14,9 +14,9 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <Image Source="/Resources/icon.png" Height="100" Margin="20"/>
+        <Image Source="/Resources/icon.png" Height="100" Margin="10"/>
 
-        <StackPanel Grid.Row="1" Margin="20">
+        <StackPanel Grid.Row="1" Margin="10">
             <TextBlock Text="Киберспортивный клуб CYBER ELITE" Style="{StaticResource TitleTextBlockStyle}"/>
             <TextBlock Text="Добро пожаловать в наш киберспортивный клуб!" Style="{StaticResource SubtitleTextBlockStyle}"/>
             <TextBlock Text="Мы – команда увлеченных киберспортсменов, которые стремятся развивать и популяризировать киберспорт в нашем регионе. Наша цель – предоставить игрокам лучшие условия для тренировок, соревнований и общения." 

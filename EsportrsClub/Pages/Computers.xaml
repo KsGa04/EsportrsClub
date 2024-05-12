@@ -10,15 +10,15 @@
 
     <Grid>
         <ScrollViewer>
-            <ItemsControl ItemsSource="{Binding Computer}" d:ItemsSource="{d:SampleData ItemCount=10}">
-                <ItemsControl.ItemsPanel>
+            <ListView x:Name="ListComputer" d:ItemsSource="{d:SampleData ItemCount=10}" Background="#00000000" Height="450">
+                <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <WrapPanel/>
+                        <WrapPanel Width="720"/>
                     </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-                <ItemsControl.ItemTemplate>
+                </ListView.ItemsPanel>
+                <ListView.ItemTemplate>
                     <DataTemplate>
-                        <Border Background="#FF282828" CornerRadius="10" Margin="10" Padding="20" Width="160" Height="150">
+                        <Border Background="#FF282828" CornerRadius="10" Margin="3" Padding="20" Width="160" Height="150">
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto"/>
@@ -26,15 +26,20 @@
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="Auto"/>
                                 </Grid.RowDefinitions>
-                                <TextBlock Grid.Row="0" Text="{Binding name_computer}" FontSize="20" FontWeight="Bold"/>
-                                <TextBlock Grid.Row="1" Text="{Binding Status.name_status}" Foreground="{Binding StatusColor}" Margin="0,10,0,0"/>
-                                <TextBlock Grid.Row="2" Text="{Binding price, StringFormat='{}{0:C2}'}" Margin="0,10,0,0"/>
-                                <Button Grid.Row="3" Content="Забронировать" HorizontalAlignment="Center" Margin="10" Style="{StaticResource BookNowButton}" x:Name="book" Click="book_Click"/>
+                                <TextBlock Grid.Row="0" Text="{Binding name_computer}" Style="{StaticResource TournamentTitleTextBlockStyle}" FontSize="18" FontWeight="Bold"/>
+                                <TextBlock Grid.Row="1" Text="{Binding Status.name_status}" Style="{StaticResource TournamentDetailsTextBlockStyle}" Margin="0,10,0,0"/>
+                                <TextBlock Grid.Row="2" Text="{Binding price, StringFormat='{}{0:00} ₽'}" Margin="0,10,0,0" Style="{StaticResource TournamentDetailsTextBlockStyle}"/>
+                                <Button Grid.Row="3" Content="Забронировать" HorizontalAlignment="Center" Margin="10" Style="{StaticResource BookNowButton}" x:Name="book"/>
                             </Grid>
                         </Border>
                     </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
+                </ListView.ItemTemplate>
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <EventSetter Event="PreviewMouseLeftButtonDown" Handler="ListViewItem_PreviewMouseLeftButtonDown" />
+                    </Style>
+                </ListView.ItemContainerStyle>
+            </ListView>
         </ScrollViewer>
     </Grid>
 </Page>

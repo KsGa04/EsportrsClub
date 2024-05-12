@@ -25,7 +25,7 @@ namespace EsportrsClub
         public MainWindow()
         {
             InitializeComponent();
-            if (Auth.Role == "Организация")
+            if (Auth.Role == "Администратор")
             {
                 MainFrame.Navigate(new Pages.AdminPanel());
                 home.IsEnabled = false;
@@ -51,7 +51,7 @@ namespace EsportrsClub
 
         private void tournament_Click(object sender, RoutedEventArgs e)
         {
-            MainFrame.Navigate(new Pages.Tournament());
+            MainFrame.Navigate(new Pages.Tournaments());
         }
 
         private void about_Click(object sender, RoutedEventArgs e)

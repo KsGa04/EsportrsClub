@@ -45,6 +45,7 @@ namespace EsportrsClub
                 users.login = UsernameTextBox.Text;
                 users.password = PasswordTextBox.Password;
                 users.email = EmailTextBox.Text;
+                users.id_role = 2;
                 db.Users.Add(users);
                 db.SaveChanges();
                 Authorization mainWindow = new Authorization();

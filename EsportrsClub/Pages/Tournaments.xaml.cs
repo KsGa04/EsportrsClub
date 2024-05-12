@@ -21,15 +21,24 @@ namespace EsportrsClub.Pages
     public partial class Tournaments : Page
     {
         EsportsClubEntities db = new EsportsClubEntities();
+        List<Tournament> tournaments = new List<Tournament>();
+
         public Tournaments()
         {
             InitializeComponent();
-            DataContext = db.Tournament.ToList();
+            ListTournament.Items.Clear();
+            tournaments = db.Tournament.ToList();
+            ListTournament.ItemsSource = tournaments;
         }
-
-        private void reg_Click(object sender, RoutedEventArgs e)
+        private void ListViewItem_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
+            if (sender is ListViewItem item)
+            {
+                var product = item.Content as Tournament;
+                int id = product.id_tournament;
+                NavigationService.Navigate(new AboutTournament(id));
 
+            }
         }
     }
 }

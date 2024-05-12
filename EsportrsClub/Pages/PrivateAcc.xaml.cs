@@ -45,5 +45,27 @@ namespace EsportrsClub.Pages
             db.SaveChanges();
             MessageBox.Show("Данные сохранены");
         }
+
+        private void Exit_Click(object sender, RoutedEventArgs e)
+        {
+            Auth.IsAuth = false;
+            Auth.UserID = 0;
+            Auth.Role = null;
+            Authorization authorization = new Authorization();
+            authorization.Show();
+            this.NavigationService.GoBack();
+
+    // Закрываем фрейм, если он есть
+    if (this.Parent is Frame)
+    {
+        (this.Parent as Frame).Content = null;
+    }
+
+    // Закрываем главное окно
+    if (this.Parent is Window)
+    {
+        (this.Parent as Window).Close();
+    }
+        }
     }
 }

@@ -27,12 +27,12 @@ namespace EsportrsClub.Pages
 
         private void tounament_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Tournament());
+            NavigationService.Navigate(new Pages.Tournaments());
         }
 
         private void computers_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Computers());
+            NavigationService.Navigate(new Pages.Computers());
         }
     }
 }

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:EsportrsClub"
         mc:Ignorable="d"
         Title="Cyber Club" Height="600" Width="800"
-        Background="#FF1E1E1E" Foreground="White" FontSize="16" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Background="#C0000000" Foreground="White" FontSize="16" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -33,11 +33,8 @@
         </Grid>
 
         <!-- Основная область с информацией о доступных компьютерах -->
-        <Grid Grid.Row="1">
-            <Grid.Background>
-            <ImageBrush ImageSource="Resources/background.png" Stretch="UniformToFill"/>
-            </Grid.Background>
-            <Frame Grid.Column="1" NavigationUIVisibility="Hidden" x:Name="MainFrame" Background="#80000000" Margin="20"/>
+        <Grid Grid.Row="1" Background="#4C514A">
+            <Frame Grid.Column="1" NavigationUIVisibility="Hidden" x:Name="MainFrame" Background="#99000000" Margin="20"/>
         </Grid>
         <!-- Нижняя панель с информацией -->
         <Grid Grid.Row="2" Background="#FF282828">

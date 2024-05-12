@@ -21,9 +21,20 @@ namespace EsportrsClub.Pages
     public partial class AdminPanel : Page
     {
         EsportsClubEntities db = new EsportsClubEntities();
+        List<Computer> compos = new List<Computer>();
+        List<Tournament> tournaments = new List<Tournament>();
+        List<Users> users = new List<Users>();
         public AdminPanel()
         {
             InitializeComponent();
+            compos = db.Computer.ToList();
+            ComputerDataGrid.ItemsSource = compos; 
+
+            tournaments = db.Tournament.ToList();
+            TournamentDataGrid.ItemsSource = tournaments;
+
+            users = db.Users.ToList();
+            UserDataGrid.ItemsSource = users;
         }
 
         private void AddComputer_Click(object sender, RoutedEventArgs e)
@@ -72,9 +83,9 @@ namespace EsportrsClub.Pages
 
         private void EditTournament_Click(object sender, RoutedEventArgs e)
         {
-            if (ReservationDataGrid.SelectedIndex >= 0)
+            if (TournamentDataGrid.SelectedIndex >= 0)
             {
-                var item = ReservationDataGrid.SelectedItem as Tournament;
+                var item = TournamentDataGrid.SelectedItem as Tournament;
                 int id = item.id_tournament;
                 NavigationService.Navigate(new AddTournament(id));
             }
@@ -86,13 +97,13 @@ namespace EsportrsClub.Pages
 
         private void DeleteTournament_Click(object sender, RoutedEventArgs e)
         {
-            if (ReservationDataGrid.SelectedIndex >= 0)
+            if (TournamentDataGrid.SelectedIndex >= 0)
             {
                 var result = MessageBox.Show("Вы точно хотите удалить этот турнир?", "Удалить", MessageBoxButton.YesNo);
 
                 if (result == MessageBoxResult.Yes)
                 {
-                    var item = ReservationDataGrid.SelectedItem as Tournament;
+                    var item = TournamentDataGrid.SelectedItem as Tournament;
                     int id = item.id_tournament;
                     Tournament computer = db.Tournament.Where(x => x.id_tournament == id).FirstOrDefault();
                     db.Tournament.Remove(computer);
@@ -162,7 +173,7 @@ namespace EsportrsClub.Pages
             string searchText = SearchReservationTextBox.Text.ToLower();
 
             // Фильтруем данные в DataGrid
-            CollectionViewSource.GetDefaultView(ReservationDataGrid.ItemsSource).Filter = (item) =>
+            CollectionViewSource.GetDefaultView(TournamentDataGrid.ItemsSource).Filter = (item) =>
             {
                 if (item is Tournament tournament)
                 {
@@ -183,7 +194,7 @@ namespace EsportrsClub.Pages
             {
                 if (item is Users user)
                 {
-                    return user.name_user.ToLower().Contains(searchText) ||
+                    return user.login.ToLower().Contains(searchText) ||
                            user.phone.ToLower().Contains(searchText) ||
                            user.email.ToLower().Contains(searchText) ||
                            user.Role.name_role.ToLower().Contains(searchText);

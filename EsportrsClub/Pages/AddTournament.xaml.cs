@@ -40,14 +40,19 @@ namespace EsportrsClub.Pages
             {
                 tournament.name_tournament = name_tournament.Text;
                 tournament.game = game.Text;
-                tournament.date_tournament = (DateTime)date_tournament.SelectedDate;
+                tournament.date_start_tournament = (DateTime)date_start_tournament.SelectedDate;
+                tournament.date_start_tournament = (DateTime)date_start_tournament.SelectedDate;
+                tournament.date_end_tournament = (DateTime)date_end_tournament.SelectedDate;
+                tournament.description = description.Text;
             }
             else
             {
                 Tournament tournament = new Tournament();
                 tournament.name_tournament = name_tournament.Text;
                 tournament.game = game.Text;
-                tournament.date_tournament = (DateTime)date_tournament.SelectedDate;
+                tournament.date_start_tournament = (DateTime)date_start_tournament.SelectedDate;
+                tournament.date_end_tournament = (DateTime)date_end_tournament.SelectedDate;
+                tournament.description = description.Text;
                 db.Tournament.Add(tournament);
             }
             db.SaveChanges();

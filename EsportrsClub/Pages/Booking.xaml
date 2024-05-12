@@ -6,9 +6,10 @@
       xmlns:local="clr-namespace:EsportrsClub.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="760"
-      Title="Бронирование игрового компьютера" Height="450" Width="800">
+      Title="Бронирование игрового компьютера">
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -35,11 +36,10 @@
             <ComboBoxItem>15:00</ComboBoxItem>
             <ComboBoxItem>16:00</ComboBoxItem>
             <ComboBoxItem>17:00</ComboBoxItem>
-            <!-- Добавьте больше вариантов времени -->
         </ComboBox>
 
-        <Label Grid.Row="2" Grid.Column="0" Content="Продолжительность (ч):" Style="{StaticResource LabelStyle}"/>
-        <Slider Grid.Row="2" Grid.Column="1" x:Name="DurationSlider" Minimum="1" Maximum="5" Value="2" TickFrequency="1" IsSnapToTickEnabled="True" Style="{StaticResource SliderStyle}"/>
+        <Label Grid.Row="2" Grid.Column="0" Content="Продолжительность (1-8 ч):" Style="{StaticResource LabelStyle}"/>
+        <Slider Grid.Row="2" Grid.Column="1" x:Name="DurationSlider" Minimum="1" Maximum="8" Value="2" TickFrequency="1" IsSnapToTickEnabled="True" Style="{StaticResource SliderStyle}"/>
 
         <Label Grid.Row="3" Grid.Column="0" Content="Дополнительные услуги:" Style="{StaticResource LabelStyle}"/>
         <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal">
@@ -53,6 +53,9 @@
         <Label Grid.Row="5" Grid.Column="0" Content="Турнир:" Style="{StaticResource LabelStyle}" VerticalAlignment="Top"/>
         <ComboBox Grid.Row="5" Grid.Column="1" x:Name="tournament" Style="{StaticResource ComboBoxStyle}" Height="30" VerticalAlignment="Top"/>
 
-        <Button Grid.Row="5" Grid.ColumnSpan="2" Content="Забронировать" Style="{StaticResource ButtonStyle}" x:Name="Book" Click="Book_Click"/>
+        <Label Grid.Row="6" Grid.Column="0" Content="Компьютер:" Style="{StaticResource LabelStyle}" VerticalAlignment="Top"/>
+        <ComboBox Grid.Row="6" Grid.Column="1" x:Name="computer" Style="{StaticResource ComboBoxStyle}" Height="30" VerticalAlignment="Top"/>
+
+        <Button Grid.Row="6" Grid.ColumnSpan="2" Content="Забронировать" Style="{StaticResource ButtonStyle}" x:Name="Book" Click="Book_Click"/>
     </Grid>
 </Page>

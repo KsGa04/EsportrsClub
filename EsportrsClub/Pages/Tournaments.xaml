@@ -18,25 +18,33 @@
             <TextBlock Style="{StaticResource SubtitleTextBlockStyle}">Примите участие в наших захватывающих киберспортивных соревнованиях!</TextBlock>
         </StackPanel>
 
-        <ListView Grid.Row="1" Margin="10" ItemsSource="{Binding Tournament}" Style="{StaticResource TournamentsListViewStyle}" d:ItemsSource="{d:SampleData ItemCount=10}">
+        <ListView Grid.Row="1" Margin="10" x:Name="ListTournament" Style="{StaticResource TournamentsListViewStyle}" d:ItemsSource="{d:SampleData ItemCount=10}">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Grid>
+                    <Grid Width="700">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
+                        
 
                         <StackPanel Grid.Column="0" Margin="10">
-                            <TextBlock Style="{StaticResource TournamentTitleTextBlockStyle}" Text="{Binding name_tournament}"/>
-                            <TextBlock Style="{StaticResource TournamentDetailsTextBlockStyle}" Text="{Binding date_tournament}"/>
+                            <TextBlock Style="{StaticResource TournamentTitleTextBlockStyle}" Text="{Binding name_tournament}" TextWrapping="WrapWithOverflow"/>
+                            <TextBlock Style="{StaticResource TournamentDetailsTextBlockStyle}" Text="{Binding date_start_tournament}"/>
                             <TextBlock Style="{StaticResource TournamentDetailsTextBlockStyle}" Text="{Binding game}"/>
                         </StackPanel>
-
-                        <Button Grid.Column="1" Style="{StaticResource ButtonStyle}" Content="Зарегистрироваться" Margin="10" x:Name="reg" Click="reg_Click"/>
+                        <StackPanel Grid.Column="1" Margin="10">
+                            <TextBlock Style="{StaticResource TournamentDetailsTextBlockStyle}" Margin="0,25" Text="{Binding date_end_tournament}"/>
+                        </StackPanel>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <EventSetter Event="PreviewMouseLeftButtonDown" Handler="ListViewItem_PreviewMouseLeftButtonDown" />
+                </Style>
+            </ListView.ItemContainerStyle>
         </ListView>
     </Grid>
 </Page>
