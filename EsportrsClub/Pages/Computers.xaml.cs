@@ -37,8 +37,14 @@ namespace EsportrsClub.Pages
                 var product = item.Content as Computer;
                 int id = product.id_computer;
                 Computer computer = db.Computer.Where(x => x.id_computer == id).FirstOrDefault();
-                NavigationService.Navigate(new Booking(null, (sender as ListViewItem).DataContext as Computer));
-
+                if (computer.id_status == 2)
+                {
+                    MessageBox.Show("На данный момент компьютер занят");
+                }
+                else
+                {
+                    NavigationService.Navigate(new Booking(null, (sender as ListViewItem).DataContext as Computer));
+                }
             }
         }
     }

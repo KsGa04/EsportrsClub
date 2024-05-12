@@ -66,27 +66,35 @@ namespace EsportrsClub.Pages
             }
             else
             {
-                string selectedTime = (string)((ComboBoxItem)TimePicker.SelectedItem).Content;
-
-                // Преобразовать строку в TimeSpan
-                TimeSpan timeSpan = TimeSpan.Parse(selectedTime);
-
-                Book book = new Book();
-                book.date_book = (DateTime)DatePicker.SelectedDate;
-                book.time_book = timeSpan;
-                book.duration = (int)DurationSlider.Value;
-                book.service_drink = checkDrink.IsChecked;
-                book.service_food = checkFood.IsChecked;
-                book.id_computer = computer.SelectedIndex + 1;
-                if (tournament.SelectedIndex != -1)
+                int id_status_computer = (int)db.Computer.Where(x => x.id_computer == computer.SelectedIndex +1).FirstOrDefault().id_status;
+                if (id_status_computer == 2)
                 {
-                    book.id_tournament = tournament.SelectedIndex + 1;
+                    MessageBox.Show("Данный компьютер занят выберите другой");
                 }
-                book.total_price = (decimal)total_price;
-                book.id_user = Auth.UserID;
-                db.Book.Add(book);
-                db.SaveChanges();
-                MessageBox.Show("Компьютер забронирован");
+                else
+                {
+                    string selectedTime = (string)((ComboBoxItem)TimePicker.SelectedItem).Content;
+
+                    // Преобразовать строку в TimeSpan
+                    TimeSpan timeSpan = TimeSpan.Parse(selectedTime);
+
+                    Book book = new Book();
+                    book.date_book = (DateTime)DatePicker.SelectedDate;
+                    book.time_book = timeSpan;
+                    book.duration = (int)DurationSlider.Value;
+                    book.service_drink = checkDrink.IsChecked;
+                    book.service_food = checkFood.IsChecked;
+                    book.id_computer = computer.SelectedIndex + 1;
+                    if (tournament.SelectedIndex != -1)
+                    {
+                        book.id_tournament = tournament.SelectedIndex + 1;
+                    }
+                    book.total_price = (decimal)total_price;
+                    book.id_user = Auth.UserID;
+                    db.Book.Add(book);
+                    db.SaveChanges();
+                    MessageBox.Show("Компьютер забронирован");
+                }   
             }
 
         }
