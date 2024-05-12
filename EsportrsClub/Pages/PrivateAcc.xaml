@@ -57,13 +57,15 @@
             <!-- История бронирований -->
             <StackPanel Grid.Column="1" Margin="20,20,0,0">
                 <TextBlock Text="История бронирования" Style="{StaticResource SubtitleTextBlockStyle}"/>
-                <DataGrid x:Name="book" AutoGenerateColumns="False" Margin="0,10,0,0" Style="{StaticResource DataGridStyle}" Height="220">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="Дата" Binding="{Binding Date}" Width="90"/>
-                        <DataGridTextColumn Header="Компьютер" Binding="{Binding Device}" Width="120"/>
-                        <DataGridTextColumn Header="Продолжительность" Binding="{Binding Duration}" Width="130"/>
-                    </DataGrid.Columns>
-                </DataGrid>
+                <ListView x:Name="book" Grid.Row="1" Margin="0,10,0,0" Style="{StaticResource TournamentsListViewStyle}" Height="213">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Дата" DisplayMemberBinding="{Binding Date}" Width="90"/>
+                            <GridViewColumn Header="Компьютер" DisplayMemberBinding="{Binding Device}" Width="120"/>
+                            <GridViewColumn Header="Продолжительность" DisplayMemberBinding="{Binding Duration}" Width="130"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
             </StackPanel>
         </Grid>
     </Grid>

@@ -23,7 +23,7 @@
         </Grid.ColumnDefinitions>
 
         <Label Grid.Row="0" Grid.Column="0" Content="Выберите дату:" Style="{StaticResource LabelStyle}"/>
-        <DatePicker Grid.Row="0" Grid.Column="1" x:Name="DatePicker" Style="{StaticResource DatePickerStyle}"/>
+        <DatePicker Grid.Row="0" Grid.Column="1" x:Name="DatePicker" Style="{StaticResource DatePickerStyle}" FontSize="14" Foreground="Black"/>
 
         <Label Grid.Row="1" Grid.Column="0" Content="Выберите время:" Style="{StaticResource LabelStyle}"/>
         <ComboBox Grid.Row="1" Grid.Column="1" x:Name="TimePicker" Style="{StaticResource ComboBoxStyle}">
@@ -39,12 +39,12 @@
         </ComboBox>
 
         <Label Grid.Row="2" Grid.Column="0" Content="Продолжительность (1-8 ч):" Style="{StaticResource LabelStyle}"/>
-        <Slider Grid.Row="2" Grid.Column="1" x:Name="DurationSlider" Minimum="1" Maximum="8" Value="2" TickFrequency="1" IsSnapToTickEnabled="True" Style="{StaticResource SliderStyle}"/>
+        <Slider Grid.Row="2" Grid.Column="1" x:Name="DurationSlider" Minimum="1" Maximum="8" Value="2" TickFrequency="1" IsSnapToTickEnabled="True" Style="{StaticResource SliderStyle}" ValueChanged="DurationSlider_ValueChanged"/>
 
         <Label Grid.Row="3" Grid.Column="0" Content="Дополнительные услуги:" Style="{StaticResource LabelStyle}"/>
         <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal">
-            <CheckBox Content="Заказ еды" Style="{StaticResource CheckBoxStyle}"/>
-            <CheckBox Content="Заказ напитков" Style="{StaticResource CheckBoxStyle}"/>
+            <CheckBox Content="Заказ еды" Style="{StaticResource CheckBoxStyle}" x:Name="checkFood" Checked="checkFood_Checked" Unchecked="checkFood_Unchecked"/>
+            <CheckBox Content="Заказ напитков" Style="{StaticResource CheckBoxStyle}" x:Name="checkDrink" Checked="checkDrink_Checked" Unchecked="checkDrink_Unchecked"/>
         </StackPanel>
 
         <Label Grid.Row="4" Grid.Column="0" Content="Стоимость аренды:" Style="{StaticResource LabelStyle}"/>

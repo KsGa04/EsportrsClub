@@ -22,6 +22,7 @@ namespace EsportrsClub
     /// </summary>
     public partial class MainWindow : Window
     {
+        public EsportsClubEntities db = new EsportsClubEntities();
         public MainWindow()
         {
             InitializeComponent();
@@ -37,8 +38,43 @@ namespace EsportrsClub
             {
                 MainFrame.Navigate(new Pages.Home());
             }
+            CheckAndUpdateComputerStatus();
         }
+        public void CheckAndUpdateComputerStatus()
+        {
+            DateTime currentDateTime = DateTime.Now;
+            DateTime currentDate = currentDateTime.Date;
 
+            foreach (Computer computer in db.Computer.ToList())
+            {
+                var activeBookings = db.Book
+                    .Where(b => b.id_computer == computer.id_computer)
+                    .ToList();
+
+                bool isComputerBusy = activeBookings.Any(b =>
+                    b.date_book <= currentDate
+                    && b.date_book.Add(TimeSpan.FromHours(b.duration)) > currentDate);
+
+                if (isComputerBusy)
+                {
+                    if (computer.Status.name_status != "Занят")
+                    {
+                        Computer computer1 = db.Computer.Where(x => x.id_computer == computer.id_computer).FirstOrDefault();
+                        computer1.id_status = 2;
+                        db.SaveChanges();
+                    }
+                }
+                else
+                {
+                    if (computer.Status.name_status != "Свободен")
+                    {
+                        Computer computer1 = db.Computer.Where(x => x.id_computer == computer.id_computer).FirstOrDefault();
+                        computer1.id_status = 1;
+                        db.SaveChanges();
+                    }
+                }
+            }
+        }
         private void home_Click(object sender, RoutedEventArgs e)
         {
             MainFrame.Navigate(new Pages.Home());

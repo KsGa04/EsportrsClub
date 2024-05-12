@@ -157,50 +157,51 @@ namespace EsportrsClub.Pages
         private void SearchComputer_Click(object sender, RoutedEventArgs e)
         {
             string searchText = SearchComputerTextBox.Text.ToLower();
-            CollectionViewSource.GetDefaultView(ComputerDataGrid.ItemsSource).Filter = (item) =>
-            {
-                if (item is Computer computer)
-                {
-                    return computer.name_computer.ToLower().Contains(searchText) ||
-                           computer.Status.name_status.ToLower().Contains(searchText);
-                }
-                return false;
-            };
+
+            var filteredComputers = db.Computer.Where(c =>
+                c.name_computer.ToLower().Contains(searchText) ||
+                c.id_computer.ToString().Contains(searchText)).ToList();
+
+            ComputerDataGrid.ItemsSource = filteredComputers;
         }
 
         private void SearchTournament_Click(object sender, RoutedEventArgs e)
         {
             string searchText = SearchReservationTextBox.Text.ToLower();
 
-            // Фильтруем данные в DataGrid
-            CollectionViewSource.GetDefaultView(TournamentDataGrid.ItemsSource).Filter = (item) =>
-            {
-                if (item is Tournament tournament)
-                {
-                    return tournament.name_tournament.ToLower().Contains(searchText) ||
-                           tournament.description.ToLower().Contains(searchText) ||
-                           tournament.game.ToLower().Contains(searchText);
-                }
-                return false;
-            };
+            var filteredTournaments = db.Tournament.Where(t =>
+                t.name_tournament.ToLower().Contains(searchText) ||
+                t.id_tournament.ToString().Contains(searchText) ||
+                t.description.ToLower().Contains(searchText) ||
+                t.game.ToLower().Contains(searchText)).ToList();
+
+            TournamentDataGrid.ItemsSource = filteredTournaments;
         }
 
         private void SearchUser_Click(object sender, RoutedEventArgs e)
         {
             string searchText = SearchUserTextBox.Text.ToLower();
 
-            // Фильтруем данные в DataGrid
-            CollectionViewSource.GetDefaultView(UserDataGrid.ItemsSource).Filter = (item) =>
-            {
-                if (item is Users user)
-                {
-                    return user.login.ToLower().Contains(searchText) ||
-                           user.phone.ToLower().Contains(searchText) ||
-                           user.email.ToLower().Contains(searchText) ||
-                           user.Role.name_role.ToLower().Contains(searchText);
-                }
-                return false;
-            };
+            var filteredUsers = db.Users.Where(u =>
+                u.login.ToLower().Contains(searchText) ||
+                u.id_user.ToString().Contains(searchText) ||
+                u.phone.Contains(searchText) ||
+                u.email.ToLower().Contains(searchText) ||
+                u.Role.name_role.ToLower().Contains(searchText)).ToList();
+
+            UserDataGrid.ItemsSource = filteredUsers;
+        }
+
+        private void Page_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            compos = db.Computer.ToList();
+            ComputerDataGrid.ItemsSource = compos;
+
+            tournaments = db.Tournament.ToList();
+            TournamentDataGrid.ItemsSource = tournaments;
+
+            users = db.Users.ToList();
+            UserDataGrid.ItemsSource = users;
         }
     }
 }

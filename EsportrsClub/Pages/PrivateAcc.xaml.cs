@@ -32,7 +32,7 @@ namespace EsportrsClub.Pages
         }
         public void ListViewLoad()
         {
-                var books = db.Book.ToList();
+                var books = db.Book.Where(x => x.id_user == Auth.UserID).ToList();
 
                 book.ItemsSource = books;
         }
